@@ -10,24 +10,6 @@ export default {
   components: {
     TheHeader
   },
-  data() {
-    return {
-      isLoggedIn: false,
-    };
-  },
-  provide() {
-    return {
-      isLoggedIn: this.isLoggedIn,
-    };
-  },
-  methods: {
-    login() {
-      this.isLoggedIn = true;
-    },
-    logout() {
-      this.isLoggedIn = false;
-    },
-  },
 };
 </script>
 

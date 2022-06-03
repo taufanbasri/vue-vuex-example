@@ -12,14 +12,14 @@
           <router-link to="/cart">Cart</router-link>
           <base-badge mode="elegant">{{ quantity }}</base-badge>
         </li>
-        <li v-if="isLoggedIn">
+        <li v-if="isAuthenticated">
           <router-link to="/admin">Admin</router-link>
         </li>
       </ul>
     </nav>
     <div>
-      <button v-if="!isLoggedIn" @click="login">Login</button>
-      <button v-if="isLoggedIn" @click="logout">Logout</button>
+      <button v-if="!isAuthenticated" @click="login">Login</button>
+      <button v-if="isAuthenticated" @click="logout">Logout</button>
     </div>
   </header>
 </template>
@@ -29,7 +29,16 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters('cart', ['quantity'])
+    ...mapGetters('cart', ['quantity']),
+    ...mapGetters(['isAuthenticated'])
+  },
+  methods: {
+    login() {
+      this.$store.dispatch('login')
+    },
+    logout() {
+      this.$store.dispatch('logout')
+    }
   },
 };
 </script>
